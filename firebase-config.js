@@ -1,12 +1,5 @@
-// Firebase placeholder
-// إذا حبيتي تشغّلين الكلاود فعليًا:
-// 1. افتحي Firebase
-// 2. انسخي إعدادات مشروعك هنا
-// 3. فعّلي Firestore
-// 4. بدلي الدالة saveToFirebase تحت
-
+// placeholder for cloud save
 async function saveToFirebase(data) {
-  // currently just logs – replace with real Firestore code
-  console.log("Saved to cloud (fake):", data);
+  console.log("FAKE SAVE TO CLOUD:", data);
   return true;
 }

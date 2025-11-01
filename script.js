@@ -1,4 +1,3 @@
-// toggle chatbot
 function toggleChat() {
   const box = document.getElementById('chatbot');
   box.style.display = box.style.display === 'flex' ? 'none' : 'flex';
@@ -15,21 +14,19 @@ function sendMessage() {
   userDiv.textContent = text;
   body.appendChild(userDiv);
 
-  let reply = "I'm here 24/7. Ask me about services, prices, Dhofar coverage, or booking.";
-  const lower = text.toLowerCase();
-
-  if (lower.includes('service')) {
-    reply = "Available services: home cleaning, AC maintenance, plumbing, electrical, painting & décor, CCTV/smart home, car wash, gardening, ladies home salon. All in Dhofar.";
-  } else if (lower.includes('price') || lower.includes('how much') || lower.includes('cost')) {
-    reply = "Prices start from 5 OMR for small jobs and 15–25 OMR for AC/electrical/plumbing. Final price depends on your Dhofar area and technician availability.";
-  } else if (lower.includes('area') || lower.includes('where') || lower.includes('dhofar')) {
-    reply = "We currently serve Dhofar only: Salalah, Taqah, Mirbat, Thumrait, Rakhyut, Dhalkut and nearby areas.";
-  } else if (lower.includes('24')) {
-    reply = "Yes, we receive requests 24/7. Technicians are dispatched during working hours or as agreed.";
-  } else if (lower.includes('book') || lower.includes('register')) {
-    reply = "To book: fill the form with name, phone, Dhofar area, service type, and time. Admin will confirm and assign a technician.";
+  let reply = "I am available 24/7 to answer about DhofarCare.";
+  const q = text.toLowerCase();
+  if (q.includes('service')) {
+    reply = "We provide: cleaning, AC maintenance, plumbing, electrical, painting & décor, CCTV/smart home, car wash, gardening, ladies salon, moving – in Dhofar only.";
+  } else if (q.includes('price') || q.includes('cost') || q.includes('how much')) {
+    reply = "Prices start from 5 OMR for simple jobs and 15–25 OMR for AC / plumbing / electrical. Final price depends on area & technician.";
+  } else if (q.includes('area') || q.includes('where') || q.includes('dhofar')) {
+    reply = "We cover: Salalah, Taqah, Mirbat, Thumrait, Rakhyut, Dhalkut and nearby areas in Dhofar.";
+  } else if (q.includes('24')) {
+    reply = "Yes, requests are accepted 24/7. Technicians are assigned according to schedule.";
+  } else if (q.includes('book')) {
+    reply = "To book, fill the form at the bottom with your name, email, phone, Dhofar area, service type, and date/time.";
   }
-
   const botDiv = document.createElement('div');
   botDiv.className = 'msg bot';
   botDiv.textContent = reply;
@@ -49,13 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = Object.fromEntries(formData.entries());
     data.createdAt = new Date().toISOString();
 
-    // 1) save to firebase/cloud (placeholder)
+    // 1) pretend save to cloud
     if (typeof saveToFirebase === 'function') {
-      try { await saveToFirebase(data); } catch (err) { console.warn('firebase save failed', err); }
+      try { await saveToFirebase(data); } catch (err) { console.warn('cloud fail', err); }
     }
 
     // 2) send to admin
-    let adminOk = false;
     try {
       await emailjs.send("service_dhofarcare", "template_booking", {
         to_email: "sharooqalmashani1@gmail.com",
@@ -67,12 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
         user_datetime: data.datetime,
         user_notes: data.notes || ""
       });
-      adminOk = true;
     } catch (err) {
-      console.warn("Admin email failed", err);
+      console.warn('admin email fail', err);
     }
 
-    // 3) auto-reply to customer (English)
+    // 3) auto-reply to customer
     try {
       await emailjs.send("service_dhofarcare", "template_autoreply", {
         customer_email: data.email,
@@ -82,16 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
         request_time: data.datetime || ""
       });
     } catch (err) {
-      console.warn("Customer auto-reply failed", err);
+      console.warn('customer email fail', err);
     }
 
-    if (adminOk) {
-      alert("✅ Request submitted.
-An email was sent to you (admin) and to the customer.");
-    } else {
-      alert("Request submitted locally. Configure EmailJS IDs to receive emails.");
-    }
-
+    alert("Request submitted. You will receive an email shortly.");
     form.reset();
   });
 });
