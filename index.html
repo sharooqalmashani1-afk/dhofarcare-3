@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DhofarCare – Smart Home Services in Dhofar</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- EmailJS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    (function() {
+      // TODO: replace with your real EmailJS public key
+      emailjs.init("J3g0cSAMPLE_publicKey123");
+    })();
+  </script>
+</head>
+<body>
+  <div class="topbar">
+    <div class="left">
+      <span class="ai-pill">⚡ AI Powered Assistant</span>
+      <span>📍 Dhofar, Oman</span>
+      <span>📞 +968 72 345 678</span>
+      <span>WhatsApp: +968 92 345 678</span>
+    </div>
+    <div class="right">
+      <a href="#booking" class="btn small">Request Service</a>
+    </div>
+  </div>
+
+  <header class="navbar">
+    <div class="brand-box">
+      <img src="assets/logo.png" alt="DhofarCare" class="logo" />
+      <div>
+        <h1 class="brand">DhofarCare</h1>
+        <p>Smart platform for home services</p>
+      </div>
+    </div>
+    <nav>
+      <a href="#hero">الرئيسية</a>
+      <a href="#services">الخدمات</a>
+      <a href="#how">طريقة العمل</a>
+      <a href="#vr">VR</a>
+      <a href="#booking" class="btn nav-btn">طلب خدمة</a>
+    </nav>
+  </header>
+
+  <section id="hero" class="hero">
+    <div class="hero-text">
+      <h2>DhofarCare – منصة لخدمات المنازل بذكاء اصطناعي وسحابة</h2>
+      <p>بعد ما العميل يسجّل: 1) تجيك إنتِ رسالة على الإيميل، 2) ويجيه هو رسالة إنجليزي جاهزة.</p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn">احجز الآن</a>
+        <a href="#video" class="btn ghost">شاهد الفيديو</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="assets/platform-3d.png" alt="DhofarCare platform" />
+    </div>
+  </section>
+
+  <section id="services" class="section services">
+    <h3 class="section-title">Available Services in English</h3>
+    <p class="section-desc">We currently cover all Dhofar areas. Below are the most requested services.</p>
+    <div class="services-grid">
+      <div class="service-card">🧹 Home Cleaning</div>
+      <div class="service-card">❄️ AC Maintenance</div>
+      <div class="service-card">🚰 Plumbing</div>
+      <div class="service-card">💡 Electrical</div>
+      <div class="service-card">🎨 Painting & Décor</div>
+      <div class="service-card">📹 CCTV & Smart Home</div>
+      <div class="service-card">🚗 Car Wash</div>
+      <div class="service-card">🏡 Gardening</div>
+      <div class="service-card">👩‍🦰 Ladies Home Salon</div>
+    </div>
+    <p class="section-desc small">Pricing: 5–25 OMR depending on service, Dhofar area, and technician availability.</p>
+  </section>
+
+  <section id="how" class="section how">
+    <h3 class="section-title">How DhofarCare works</h3>
+    <div class="how-grid">
+      <div class="how-step">
+        <span class="num">1</span>
+        <h4>Customer submits form</h4>
+        <p>Form data goes to cloud + email to admin + email to customer.</p>
+      </div>
+      <div class="how-step">
+        <span class="num">2</span>
+        <h4>Admin reviews</h4>
+        <p>Check area (Dhofar only), service type, and preferred time.</p>
+      </div>
+      <div class="how-step">
+        <span class="num">3</span>
+        <h4>Technician is assigned</h4>
+        <p>Admin confirms available technician.</p>
+      </div>
+      <div class="how-step">
+        <span class="num">4</span>
+        <h4>Visit is scheduled</h4>
+        <p>Customer receives confirmation.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="vr" class="section vr">
+    <h3 class="section-title">VR / Video for Home Maintenance</h3>
+    <video id="video" controls>
+      <source src="assets/vr-demo.mp4" type="video/mp4" />
+      Your browser does not support video.
+    </video>
+  </section>
+
+  <section id="booking" class="section booking">
+    <h3 class="section-title">DhofarCare Service Request</h3>
+    <p class="section-desc">Fill in your details. You will receive an English confirmation email.</p>
+    <form id="booking-form">
+      <div class="row">
+        <label>Full Name *</label>
+        <input type="text" name="name" required />
+      </div>
+      <div class="row">
+        <label>Email *</label>
+        <input type="email" name="email" required />
+      </div>
+      <div class="row">
+        <label>Phone / WhatsApp *</label>
+        <input type="tel" name="phone" required />
+      </div>
+      <div class="row">
+        <label>Area in Dhofar *</label>
+        <select name="area" required>
+          <option value="">-- select --</option>
+          <option>Salalah</option>
+          <option>Taqah</option>
+          <option>Mirbat</option>
+          <option>Thumrait</option>
+          <option>Rakhyut</option>
+          <option>Dhalkut</option>
+          <option>Other in Dhofar</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>Service Type *</label>
+        <select name="service" required>
+          <option value="">-- choose service --</option>
+          <option>Cleaning</option>
+          <option>AC Maintenance</option>
+          <option>Plumbing</option>
+          <option>Electrical</option>
+          <option>Painting & Décor</option>
+          <option>Car Wash</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="row">
+        <label>Preferred Date & Time *</label>
+        <input type="datetime-local" name="datetime" required />
+      </div>
+      <div class="row">
+        <label>Notes</label>
+        <textarea name="notes" rows="3" placeholder="Describe the issue or exact location..."></textarea>
+      </div>
+      <button type="submit" class="btn wide">Submit request</button>
+      <p class="hint">Admin email: <b>sharooqalmashani1@gmail.com</b></p>
+    </form>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 DhofarCare – Smart Digital Platform for Home Services in Dhofar.</p>
+  </footer>
+
+  <!-- Chatbot -->
+  <div class="chatbot" id="chatbot">
+    <div class="chat-header" onclick="toggleChat()">
+      🤖 DhofarCare AI Assistant
+    </div>
+    <div class="chat-body" id="chat-body">
+      <div class="msg bot">Hello 👋 I can tell you our services, prices, Dhofar coverage, and booking steps.</div>
+      <div class="msg bot">Try: "what services do you have?" or "price" or "areas" or "24/7".</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chat-input" placeholder="Ask in English..." onkeydown="if(event.key==='Enter'){sendMessage();}" />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+  <button class="chat-toggle" onclick="toggleChat()">💬</button>
+
+  <script src="firebase-config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
